@@ -211,6 +211,31 @@
 @media (max-width: 768px) {
   .elementor-gallery__container { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* Testimonial Swiper carousel — JS doesn't initialize, so stack slides */
+.elementor-main-swiper.swiper-container {
+  width: 100% !important;
+  overflow: visible !important;
+}
+.elementor-main-swiper .swiper-wrapper {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px !important;
+  transform: none !important;
+  width: 100% !important;
+  flex-wrap: wrap;
+}
+.elementor-main-swiper .swiper-slide {
+  width: auto !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  flex-shrink: 1 !important;
+}
+@media (max-width: 768px) {
+  .elementor-main-swiper .swiper-wrapper {
+    grid-template-columns: 1fr !important;
+  }
+}
 </style>
 <style id="static-visibility-fix">.elementor-invisible{visibility:visible !important;opacity:1 !important;}</style></head>
 <body class="rtl page-template-default page page-id-45 wp-custom-logo wp-embed-responsive elementor-default elementor-template-full-width elementor-kit-5 elementor-page elementor-page-45">
@@ -909,7 +934,11 @@
 				</div>
 				<div class="elementor-element elementor-element-304ef8c elementor-button-align-stretch elementor-widget elementor-widget-form" data-id="304ef8c" data-element_type="widget" data-settings="{&quot;button_width&quot;:&quot;20&quot;,&quot;step_next_label&quot;:&quot;\u05d4\u05d1\u05d0&quot;,&quot;step_previous_label&quot;:&quot;\u05d4\u05e7\u05d5\u05d3\u05dd&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}" data-widget_type="form.default">
 				<div class="elementor-widget-container">
-							<form class="elementor-form" method="post" name="טופס חדש">
+							<form class="elementor-form" method="post" name="טופס חדש" action="https://formsubmit.co/roeyatraction@gmail.com">
+<input type="hidden" name="_subject" value="פנייה חדשה מהאתר etgarim-plus.com">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_next" value="https://etgarim-plus.com/?sent=1">
 			<input type="hidden" name="post_id" value="64"/>
 			<input type="hidden" name="form_id" value="304ef8c"/>
 			<input type="hidden" name="referer_title" value="פיינטבול - אתגרים פלוס" />
