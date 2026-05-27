@@ -189,6 +189,26 @@
 <meta name="msapplication-TileImage" content="/wp-content/uploads/2024/04/Subtract-6.webp" />
 <noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript>
 <style id="static-gallery-fix">
+/* RTL/bidi fix — Hebrew text with mixed punctuation (gershayim, periods) was rendering incorrectly */
+[dir="rtl"] p,
+[dir="rtl"] .elementor-widget-text-editor,
+[dir="rtl"] .timeline-item__card-desc,
+[dir="rtl"] .timeline-item__card-title,
+[dir="rtl"] .elementor-testimonial__text,
+[dir="rtl"] .elementor-testimonial__name,
+[dir="rtl"] .elementor-heading-title,
+[dir="rtl"] .elementor-button-text,
+[dir="rtl"] .elementor-icon-list-text {
+  unicode-bidi: plaintext;
+  text-align: right;
+}
+.timeline-item__card-desc,
+.timeline-item__card-title,
+.elementor-testimonial__text {
+  direction: rtl;
+  unicode-bidi: plaintext;
+}
+
 /* Static gallery layout (replaces JS justified layout) */
 .elementor-gallery__container {
   display: grid !important;
@@ -934,7 +954,7 @@
 				</div>
 				<div class="elementor-element elementor-element-304ef8c elementor-button-align-stretch elementor-widget elementor-widget-form" data-id="304ef8c" data-element_type="widget" data-settings="{&quot;button_width&quot;:&quot;20&quot;,&quot;step_next_label&quot;:&quot;\u05d4\u05d1\u05d0&quot;,&quot;step_previous_label&quot;:&quot;\u05d4\u05e7\u05d5\u05d3\u05dd&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}" data-widget_type="form.default">
 				<div class="elementor-widget-container">
-							<form class="elementor-form" method="post" name="טופס חדש" action="https://formsubmit.co/roeyatraction@gmail.com">
+							<form class="elementor-form" method="post" name="טופס חדש" action="https://formsubmit.co/1c00798a9d6c367f458f3cf405d04c28">
 <input type="hidden" name="_subject" value="פנייה חדשה מהאתר etgarim-plus.com">
 <input type="hidden" name="_template" value="table">
 <input type="hidden" name="_captcha" value="false">
