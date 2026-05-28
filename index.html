@@ -1349,11 +1349,7 @@ background: linear-gradient(90deg, rgba(131,120,27,0) 13%, rgba(131,120,27,0.916
 				</div>
 				<div class="elementor-element elementor-element-304ef8c elementor-button-align-stretch elementor-widget elementor-widget-form" data-id="304ef8c" data-element_type="widget" data-settings="{&quot;button_width&quot;:&quot;20&quot;,&quot;step_next_label&quot;:&quot;\u05d4\u05d1\u05d0&quot;,&quot;step_previous_label&quot;:&quot;\u05d4\u05e7\u05d5\u05d3\u05dd&quot;,&quot;step_type&quot;:&quot;number_text&quot;,&quot;step_icon_shape&quot;:&quot;circle&quot;}" data-widget_type="form.default">
 				<div class="elementor-widget-container">
-							<form class="elementor-form" method="post" name="טופס חדש" action="https://formsubmit.co/1c00798a9d6c367f458f3cf405d04c28">
-<input type="hidden" name="_subject" value="פנייה חדשה מהאתר etgarim-plus.com">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_next" value="https://etgarim-plus.com/?sent=1">
+							<form class="elementor-form" method="post" name="טופס חדש">
 			
 			<div class="elementor-form-fields-wrapper elementor-labels-">
 								<div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-name elementor-col-40">
@@ -1472,6 +1468,40 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
   setTimeout(fix, 100);
   setTimeout(fix, 500);
   setTimeout(fix, 1500);
+})();
+</script>
+<script id="whatsapp-form-handler">
+(function(){
+  var WA = "972546482770";
+  function handle(form){
+    form.addEventListener("submit", function(ev){
+      ev.preventDefault();
+      ev.stopPropagation();
+      // collect name + phone (support both Hebrew names and elementor names)
+      function val(names){
+        for (var i=0;i<names.length;i++){
+          var el = form.querySelector('[name="'+names[i]+'"]');
+          if (el && el.value.trim()) return el.value.trim();
+        }
+        return "";
+      }
+      var name  = val(["שם","form_fields[name]","name"]);
+      var phone = val(["טלפון","form_fields[email]","phone","tel"]);
+      if(!name && !phone){ alert("נא למלא שם וטלפון"); return false; }
+      var msg = "שלום רועי, הגעתי דרך האתר 🙂\n";
+      if(name)  msg += "שם: " + name + "\n";
+      if(phone) msg += "טלפון: " + phone + "\n";
+      msg += "אשמח שתחזרו אליי";
+      var url = "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
+      window.open(url, "_blank");
+      return false;
+    }, true);
+  }
+  function init(){
+    document.querySelectorAll("form.elementor-form").forEach(handle);
+  }
+  if(document.readyState!=="loading") init();
+  else document.addEventListener("DOMContentLoaded", init);
 })();
 </script>
 </body>
