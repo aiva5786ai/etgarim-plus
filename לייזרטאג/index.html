@@ -1146,36 +1146,38 @@ if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_c
   setTimeout(fix, 1500);
 })();
 </script>
-<script id="whatsapp-form-handler">
+<script id="contact-form-handler">
 (function(){
-  var WA = "972546482770";
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbzVdFpKOeBt1XOiSFufkM-_Z_1x7-hhXGXYH7bgQzWMrGUnFrRpWHYUnXsY6Rol0EiTxg/exec";
+  function val(form, names){
+    for (var i=0;i<names.length;i++){
+      var el = form.querySelector('[name="'+names[i]+'"]');
+      if (el && el.value.trim()) return el.value.trim();
+    }
+    return "";
+  }
+  function showThanks(form){
+    var box = document.createElement("div");
+    box.setAttribute("style","padding:18px 22px;background:#1e8e3e;color:#fff;border-radius:10px;font-size:18px;font-weight:700;text-align:center;direction:rtl;margin:10px 0;");
+    box.textContent = "תודה! קיבלנו את הפרטים ונחזור אליך בהקדם 🙂";
+    form.parentNode.insertBefore(box, form);
+    form.style.display = "none";
+  }
   function handle(form){
     form.addEventListener("submit", function(ev){
-      ev.preventDefault();
-      ev.stopPropagation();
-      // collect name + phone (support both Hebrew names and elementor names)
-      function val(names){
-        for (var i=0;i<names.length;i++){
-          var el = form.querySelector('[name="'+names[i]+'"]');
-          if (el && el.value.trim()) return el.value.trim();
-        }
-        return "";
-      }
-      var name  = val(["שם","form_fields[name]","name"]);
-      var phone = val(["טלפון","form_fields[email]","phone","tel"]);
+      ev.preventDefault(); ev.stopPropagation();
+      var name  = val(form,["שם","form_fields[name]","name"]);
+      var phone = val(form,["טלפון","form_fields[email]","phone","tel"]);
       if(!name && !phone){ alert("נא למלא שם וטלפון"); return false; }
-      var msg = "שלום רועי, הגעתי דרך האתר 🙂\n";
-      if(name)  msg += "שם: " + name + "\n";
-      if(phone) msg += "טלפון: " + phone + "\n";
-      msg += "אשמח שתחזרו אליי";
-      var url = "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
-      window.open(url, "_blank");
+      var body = new URLSearchParams();
+      body.append("שם", name);
+      body.append("טלפון", phone);
+      fetch(ENDPOINT, {method:"POST", mode:"no-cors", body:body}).catch(function(){});
+      showThanks(form);
       return false;
     }, true);
   }
-  function init(){
-    document.querySelectorAll("form.elementor-form").forEach(handle);
-  }
+  function init(){ document.querySelectorAll("form.elementor-form").forEach(handle); }
   if(document.readyState!=="loading") init();
   else document.addEventListener("DOMContentLoaded", init);
 })();
